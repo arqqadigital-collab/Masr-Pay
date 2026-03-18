@@ -1,6 +1,7 @@
 import { Lock, CreditCard, LayoutDashboard, Shield, Globe, Headphones, Smartphone, Zap } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
+import DecorativePattern from '../ui/DecorativePattern';
 
 interface FeatureGridItemProps {
   icon: LucideIcon;
@@ -19,8 +20,10 @@ const FeatureGridItem = ({ icon: Icon, title, desc }: FeatureGridItemProps) => (
 );
 
 const WhyTrustUs = () => (
-  <section className="py-24 bg-white">
-    <div className="max-w-7xl mx-auto px-6">
+  <section className="py-24 bg-white relative overflow-hidden">
+    <DecorativePattern className="top-0 right-0 w-[40rem] md:w-[50rem] translate-x-1/4 -translate-y-1/4" />
+
+    <div className="max-w-7xl mx-auto px-6 relative z-10">
       <SectionHeading
         title="Why Businesses Trust Us?"
         subtitle="Merchants first, but customers at the heart of every experience."

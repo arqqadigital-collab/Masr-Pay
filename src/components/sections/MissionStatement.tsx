@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import DecorativePattern from '../ui/DecorativePattern';
 
 const MissionStatement = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,19 +27,21 @@ const MissionStatement = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-40 bg-white flex items-center justify-center overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
-          <span className={`text-gray-900 block mb-6 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            MasrPay...
+    <section ref={sectionRef} className="py-40 bg-white flex items-center overflow-hidden relative">
+      <DecorativePattern className="top-0 left-0 w-[40rem] md:w-[50rem] -translate-x-1/3 -translate-y-1/4" />
+      
+      <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+        <h2 className="text-4xl md:text-7xl font-extrabold tracking-tight leading-tight text-left">
+          <span className={`text-black block mb-6 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            MasrPay
           </span>
-
-          <span className={`text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600 block mb-6 transition-all duration-1000 delay-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            Designed for Egypt's needs...
+          
+          <span className={`text-black block mb-6 transition-all duration-1000 delay-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            Designed for Egypt's needs
           </span>
-
-          <span className={`text-[#D62828] block transition-all duration-1000 delay-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            Built on global standards...
+          
+          <span className={`text-black block transition-all duration-1000 delay-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            Built on global standards
           </span>
         </h2>
       </div>

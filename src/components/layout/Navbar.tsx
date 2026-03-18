@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import Logo from './Logo';
 import MasrPayButton from '../ui/MasrPayButton';
 
@@ -16,21 +16,21 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'py-3' : 'py-5'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 w-full z-50 pt-4 px-4 md:px-6 transition-all duration-300 pointer-events-none">
+      <div className={`
+        pointer-events-auto max-w-7xl mx-auto flex justify-between items-center
+        bg-white rounded-tl-2xl rounded-br-2xl
+        transition-all duration-300 px-6 py-3 md:px-8
+      `}>
         <Logo />
-
-        {/* Desktop Nav - Floating Pill "Island" Style */}
-        <div className={`
-          hidden md:flex items-center gap-2 p-1.5 pl-8
-          bg-white/80 backdrop-blur-xl border border-white/40 shadow-lg shadow-gray-200/20 rounded-full
-          transition-all duration-300 ${scrolled ? 'translate-y-0' : 'translate-y-0'}
-        `}>
-          <div className="flex items-center gap-8 mr-4">
+        
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center">
+          <div className="flex items-center gap-8 mr-8">
             {NAV_ITEMS.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
+              <a 
+                key={item} 
+                href={`#${item.toLowerCase().replace(' ', '-')}`} 
                 className="text-sm font-medium text-gray-600 hover:text-[#D62828] transition-colors relative group"
               >
                 {item}
@@ -38,13 +38,25 @@ const Navbar = () => {
               </a>
             ))}
           </div>
+          
+          {/* Language Switcher */}
+          <div className="flex items-center gap-3 mr-6 border-l-2 border-gray-300 pl-6">
+            <button className="text-sm font-bold text-[#D62828] flex items-center gap-1.5 transition-colors">
+              <Globe size={16} /> EN
+            </button>
+            <span className="text-gray-300 text-sm">/</span>
+            <button className="text-sm font-medium text-gray-500 hover:text-[#D62828] transition-colors">
+              عربي
+            </button>
+          </div>
+
           <MasrPayButton variant="primary" className="py-2.5 px-6 text-sm">Contact Us</MasrPayButton>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-800 bg-white/80 backdrop-blur-md p-2 rounded-full shadow-sm border border-gray-100"
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="md:hidden text-gray-800 p-2 rounded-xl hover:bg-gray-100 transition-colors"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -52,13 +64,22 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl shadow-xl p-6 flex flex-col gap-4 md:hidden border-t border-gray-100">
+        <div className="pointer-events-auto absolute top-[calc(100%+10px)] left-4 right-4 max-w-7xl mx-auto bg-white p-6 flex flex-col gap-4 md:hidden border border-gray-100 rounded-tl-2xl rounded-br-2xl">
           {NAV_ITEMS.map((item) => (
             <a key={item} href="#" className="text-lg font-medium text-gray-800 py-3 border-b border-gray-100/50">
               {item}
             </a>
           ))}
-          <MasrPayButton className="w-full mt-2">Contact Us</MasrPayButton>
+          
+          {/* Mobile Language Switcher */}
+          <div className="flex items-center gap-4 py-3 border-b border-gray-100/50">
+            <Globe size={20} className="text-gray-500" />
+            <button className="text-lg font-bold text-[#D62828]">English</button>
+            <span className="text-gray-300">|</span>
+            <button className="text-lg font-medium text-gray-500 hover:text-[#D62828]">العربية</button>
+          </div>
+
+          <MasrPayButton className="w-full mt-2 rounded-xl">Contact Us</MasrPayButton>
         </div>
       )}
     </nav>

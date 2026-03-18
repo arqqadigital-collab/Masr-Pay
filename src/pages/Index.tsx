@@ -4,6 +4,7 @@ import MissionStatement from '@/components/sections/MissionStatement';
 import ParallaxFeatures from '@/components/sections/ParallaxFeatures';
 import CTASection from '@/components/sections/CTASection';
 import Partners from '@/components/sections/Partners';
+import Compliances from '@/components/sections/Compliances';
 import Services from '@/components/sections/Services';
 import PromiseSection from '@/components/sections/PromiseSection';
 import WhyTrustUs from '@/components/sections/WhyTrustUs';
@@ -17,6 +18,7 @@ const Index = () => (
     <ParallaxFeatures />
     <CTASection />
     <Partners />
+    <Compliances />
     <Services />
     <PromiseSection />
     <WhyTrustUs />
