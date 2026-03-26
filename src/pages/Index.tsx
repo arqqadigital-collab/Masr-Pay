@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Hero from '@/components/sections/Hero';
 import MissionStatement from '@/components/sections/MissionStatement';
@@ -9,21 +10,45 @@ import Services from '@/components/sections/Services';
 import PromiseSection from '@/components/sections/PromiseSection';
 import WhyTrustUs from '@/components/sections/WhyTrustUs';
 import Footer from '@/components/layout/Footer';
+import DevelopersPage from './DevelopersPage';
+import DocumentationPage from './DocumentationPage';
 
-const Index = () => (
-  <div className="font-sans antialiased text-gray-900 bg-white selection:bg-red-100 selection:text-red-900">
-    <Navbar />
-    <Hero />
-    <MissionStatement />
-    <ParallaxFeatures />
-    <CTASection />
-    <Partners />
-    <Compliances />
-    <Services />
-    <PromiseSection />
-    <WhyTrustUs />
-    <Footer />
-  </div>
-);
+const Index = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  return (
+    <div className="font-sans antialiased text-gray-900 bg-white selection:bg-red-100 selection:text-red-900">
+      <Navbar setCurrentPage={setCurrentPage} />
+      
+      {currentPage === 'home' && (
+        <main>
+          <Hero />
+          <MissionStatement />
+          <ParallaxFeatures />
+          <CTASection />
+          <Partners />
+          <Compliances />
+          <Services />
+          <PromiseSection />
+          <WhyTrustUs />
+        </main>
+      )}
+
+      {currentPage === 'developers' && (
+        <DevelopersPage setCurrentPage={setCurrentPage} />
+      )}
+
+      {currentPage === 'documentations' && (
+        <DocumentationPage setCurrentPage={setCurrentPage} />
+      )}
+
+      <Footer />
+    </div>
+  );
+};
 
 export default Index;
