@@ -3,9 +3,13 @@ import { Menu, X, Globe } from 'lucide-react';
 import Logo from './Logo';
 import MasrPayButton from '../ui/MasrPayButton';
 
-const NAV_ITEMS = ['About Us', 'Solutions', 'Pricing', 'Careers', 'FAQs'];
+const NAV_ITEMS = ['About Us', 'Solutions', 'Pricing', 'Developers', 'Careers', 'FAQs'];
 
-const Navbar = () => {
+interface NavbarProps {
+  setCurrentPage: (page: string) => void;
+}
+
+const Navbar = ({ setCurrentPage }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -15,14 +19,31 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent, item: string) => {
+    e.preventDefault();
+    if (item === 'Developers') {
+      setCurrentPage('developers');
+    } else {
+      setCurrentPage('home');
+      setTimeout(() => {
+        const id = item.toLowerCase().replace(' ', '-');
+        const element = document.getElementById(id);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+    setIsOpen(false);
+  };
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 pt-4 px-4 md:px-6 transition-all duration-300 pointer-events-none">
       <div className={`
         pointer-events-auto max-w-7xl mx-auto flex justify-between items-center
         bg-white rounded-tl-2xl rounded-br-2xl
-        transition-all duration-300 px-6 py-3 md:px-8
+        transition-all duration-300 px-6 py-3 md:px-8 shadow-sm border border-gray-100
       `}>
-        <Logo />
+        <div className="cursor-pointer" onClick={() => setCurrentPage('home')}>
+          <Logo />
+        </div>
         
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center">
@@ -31,6 +52,7 @@ const Navbar = () => {
               <a 
                 key={item} 
                 href={`#${item.toLowerCase().replace(' ', '-')}`} 
+                onClick={(e) => handleNavClick(e, item)}
                 className="text-sm font-medium text-gray-600 hover:text-[#D62828] transition-colors relative group"
               >
                 {item}
@@ -56,7 +78,7 @@ const Navbar = () => {
         {/* Mobile Toggle */}
         <button 
           onClick={() => setIsOpen(!isOpen)} 
-          className="md:hidden text-gray-800 p-2 rounded-xl hover:bg-gray-100 transition-colors"
+          className="md:hidden text-gray-800 p-2 rounded-xl hover:bg-gray-100 transition-colors pointer-events-auto"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -64,9 +86,14 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="pointer-events-auto absolute top-[calc(100%+10px)] left-4 right-4 max-w-7xl mx-auto bg-white p-6 flex flex-col gap-4 md:hidden border border-gray-100 rounded-tl-2xl rounded-br-2xl">
+        <div className="pointer-events-auto absolute top-[calc(100%+10px)] left-4 right-4 max-w-7xl mx-auto bg-white p-6 flex flex-col gap-4 md:hidden border border-gray-100 rounded-tl-2xl rounded-br-2xl shadow-xl">
           {NAV_ITEMS.map((item) => (
-            <a key={item} href="#" className="text-lg font-medium text-gray-800 py-3 border-b border-gray-100/50">
+            <a 
+              key={item} 
+              href={`#${item.toLowerCase().replace(' ', '-')}`} 
+              onClick={(e) => handleNavClick(e, item)}
+              className="text-lg font-medium text-gray-800 py-3 border-b border-gray-100/50"
+            >
               {item}
             </a>
           ))}
