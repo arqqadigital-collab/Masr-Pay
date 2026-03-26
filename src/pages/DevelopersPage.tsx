@@ -2,7 +2,7 @@ import { CreditCard, Smartphone, Mail, Phone, MessageCircle, Clock, Gauge, Layou
 import SectionHeading from '@/components/ui/SectionHeading';
 import MasrPayButton from '@/components/ui/MasrPayButton';
 import DecorativePattern from '@/components/ui/DecorativePattern';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import Breadcrumb from '@/components/ui/MasrPayBreadcrumb';
 
 interface PaymentOptionCardProps {
   icon: React.ElementType;

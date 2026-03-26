@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Search, ArrowRight, AlertCircle } from 'lucide-react';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import Breadcrumb from '@/components/ui/MasrPayBreadcrumb';
 
 interface DocumentationPageProps {
   setCurrentPage: (page: string) => void;
