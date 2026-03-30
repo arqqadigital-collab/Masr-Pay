@@ -1,9 +1,24 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import Logo from './Logo';
 import MasrPayButton from '../ui/MasrPayButton';
 
-const NAV_ITEMS = ['About Us', 'Solutions', 'Pricing', 'Developers', 'Careers', 'FAQs'];
+interface NavItem {
+  name: string;
+  dropdown?: string[];
+}
+
+const navItems: NavItem[] = [
+  {
+    name: 'About Us',
+    dropdown: ['About us', 'Strategic framework', 'The Founders', 'Media & Press']
+  },
+  { name: 'Solutions' },
+  { name: 'Pricing' },
+  { name: 'Developers' },
+  { name: 'Careers' },
+  { name: 'FAQs' }
+];
 
 interface NavbarProps {
   setCurrentPage: (page: string) => void;
@@ -12,6 +27,7 @@ interface NavbarProps {
 const Navbar = ({ setCurrentPage }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -21,6 +37,12 @@ const Navbar = ({ setCurrentPage }: NavbarProps) => {
 
   const handleNavClick = (e: React.MouseEvent, item: string) => {
     e.preventDefault();
+    
+    if (item === 'About Us') {
+      setMobileAboutOpen(!mobileAboutOpen);
+      return;
+    }
+
     if (item === 'Developers') {
       setCurrentPage('developers');
     } else {
@@ -32,6 +54,20 @@ const Navbar = ({ setCurrentPage }: NavbarProps) => {
       }, 100);
     }
     setIsOpen(false);
+  };
+
+  const handleDropdownClick = (e: React.MouseEvent, dropItem: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (dropItem === 'About us') {
+      setCurrentPage('about-us');
+    } else if (dropItem === 'Strategic framework') {
+      setCurrentPage('strategic-framework');
+    } else if (dropItem === 'The Founders') {
+      setCurrentPage('founders');
+    } else if (dropItem === 'Media & Press') {
+      setCurrentPage('media-press');
+    }
   };
 
   return (
@@ -48,16 +84,36 @@ const Navbar = ({ setCurrentPage }: NavbarProps) => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center">
           <div className="flex items-center gap-8 mr-8">
-            {NAV_ITEMS.map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase().replace(' ', '-')}`} 
-                onClick={(e) => handleNavClick(e, item)}
-                className="text-sm font-medium text-gray-600 hover:text-[#D62828] transition-colors relative group"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D62828] transition-all duration-300 group-hover:w-full"></span>
-              </a>
+            {navItems.map((item) => (
+              <div key={item.name} className="relative group">
+                <a 
+                  href={item.dropdown ? "#" : `#${item.name.toLowerCase().replace(' ', '-')}`} 
+                  onClick={(e) => handleNavClick(e, item.name)}
+                  className="text-sm font-medium text-gray-600 hover:text-[#D62828] transition-colors flex items-center gap-1 py-2"
+                >
+                  {item.name}
+                  {item.dropdown && <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />}
+                  <span className="absolute bottom-1 left-0 w-0 h-0.5 bg-[#D62828] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                
+                {/* Dropdown Menu */}
+                {item.dropdown && (
+                  <div className="absolute top-full left-0 pt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                    <div className="bg-white border border-gray-100 rounded-2xl shadow-xl overflow-hidden py-2">
+                      {item.dropdown.map((dropItem) => (
+                        <a
+                          key={dropItem}
+                          href={`#${dropItem.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
+                          onClick={(e) => handleDropdownClick(e, dropItem)}
+                          className="block px-5 py-2.5 text-sm font-medium text-gray-600 hover:text-[#D62828] hover:bg-red-50/50 transition-colors"
+                        >
+                          {dropItem}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
           
@@ -86,20 +142,36 @@ const Navbar = ({ setCurrentPage }: NavbarProps) => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="pointer-events-auto absolute top-[calc(100%+10px)] left-4 right-4 max-w-7xl mx-auto bg-white p-6 flex flex-col gap-4 md:hidden border border-gray-100 rounded-tl-2xl rounded-br-2xl shadow-xl">
-          {NAV_ITEMS.map((item) => (
-            <a 
-              key={item} 
-              href={`#${item.toLowerCase().replace(' ', '-')}`} 
-              onClick={(e) => handleNavClick(e, item)}
-              className="text-lg font-medium text-gray-800 py-3 border-b border-gray-100/50"
-            >
-              {item}
-            </a>
+        <div className="pointer-events-auto absolute top-[calc(100%+10px)] left-4 right-4 max-w-7xl mx-auto bg-white p-6 flex flex-col gap-2 md:hidden border border-gray-100 rounded-tl-2xl rounded-br-2xl shadow-xl">
+          {navItems.map((item) => (
+            <div key={item.name} className="flex flex-col border-b border-gray-100/50 last:border-0 pb-2">
+              <a 
+                href={item.dropdown ? "#" : `#${item.name.toLowerCase().replace(' ', '-')}`} 
+                onClick={(e) => handleNavClick(e, item.name)}
+                className="text-lg font-medium text-gray-800 py-2 flex justify-between items-center"
+              >
+                {item.name}
+                {item.dropdown && <ChevronDown size={18} className={`text-gray-400 transition-transform duration-300 ${mobileAboutOpen ? 'rotate-180' : ''}`} />}
+              </a>
+              {item.dropdown && mobileAboutOpen && (
+                <div className="flex flex-col pl-4 gap-2 mt-1 mb-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                  {item.dropdown.map((dropItem) => (
+                    <a
+                      key={dropItem}
+                      href={`#${dropItem.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
+                      onClick={(e) => handleDropdownClick(e, dropItem)}
+                      className="text-base text-gray-500 hover:text-[#D62828] py-1"
+                    >
+                      {dropItem}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
           
           {/* Mobile Language Switcher */}
-          <div className="flex items-center gap-4 py-3 border-b border-gray-100/50">
+          <div className="flex items-center gap-4 py-3 border-t border-gray-100/50 mt-2">
             <Globe size={20} className="text-gray-500" />
             <button className="text-lg font-bold text-[#D62828]">English</button>
             <span className="text-gray-300">|</span>

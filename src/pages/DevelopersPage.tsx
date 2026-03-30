@@ -27,7 +27,7 @@ interface SupportCardProps {
 }
 
 const SupportCard = ({ icon: Icon, title, detail }: SupportCardProps) => (
-  <div className="flex flex-col items-center text-center p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+  <div className="flex flex-col items-center text-center p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 h-full">
     <div className="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center text-gray-700 mb-4">
       <Icon size={24} />
     </div>
@@ -76,9 +76,13 @@ const DevelopersPage = ({ setCurrentPage }: DevelopersPageProps) => {
             title="Flexible Payment Options" 
             subtitle="Provide a smooth checkout experience by supporting the payment options your customers trust and prefer."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl mx-auto">
-            <PaymentOptionCard icon={CreditCard} title="Cards" desc="Visa & Mastercard" />
-            <PaymentOptionCard icon={Smartphone} title="Mobile wallets" desc="Vodafone Cash" />
+          <div className="flex sm:grid overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none pb-8 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] sm:grid-cols-2 gap-6 max-w-xl mx-auto items-stretch">
+            <div className="snap-start shrink-0 w-[85vw] sm:w-auto">
+              <PaymentOptionCard icon={CreditCard} title="Cards" desc="Visa & Mastercard" />
+            </div>
+            <div className="snap-start shrink-0 w-[85vw] sm:w-auto">
+              <PaymentOptionCard icon={Smartphone} title="Mobile wallets" desc="Vodafone Cash" />
+            </div>
           </div>
         </div>
       </section>
@@ -113,7 +117,7 @@ const DevelopersPage = ({ setCurrentPage }: DevelopersPageProps) => {
                   </div>
                 </div>
               </div>
-              <div className="hidden md:block w-[40%] bg-gray-900 relative p-8">
+              <div className="hidden md:block w-[40%] bg-gray-900 relative p-8 flex-col justify-center">
                 <DecorativePattern className="top-0 right-0 w-full h-full opacity-20 object-cover" />
                 <div className="relative z-10 w-full h-full border border-white/10 bg-black/40 rounded-2xl p-6 flex flex-col gap-4 font-mono text-xs text-green-400 shadow-inner">
                   <div className="flex gap-2 mb-2">
@@ -141,10 +145,16 @@ const DevelopersPage = ({ setCurrentPage }: DevelopersPageProps) => {
             title="Need Help?" 
             subtitle="Our team is here to support you 24/7."
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <SupportCard icon={Mail} title="Email Support" detail="info@masrpay.com.eg" />
-            <SupportCard icon={Phone} title="Phone Support" detail="01210908888" />
-            <SupportCard icon={MessageCircle} title="Chat support" detail="Chat with us directly" />
+          <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] md:grid-cols-3 gap-6 items-stretch">
+            <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto">
+              <SupportCard icon={Mail} title="Email Support" detail="info@masrpay.com.eg" />
+            </div>
+            <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto">
+              <SupportCard icon={Phone} title="Phone Support" detail="01210908888" />
+            </div>
+            <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto">
+              <SupportCard icon={MessageCircle} title="Chat support" detail="Chat with us directly" />
+            </div>
           </div>
         </div>
       </section>

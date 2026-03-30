@@ -12,6 +12,10 @@ import WhyTrustUs from '@/components/sections/WhyTrustUs';
 import Footer from '@/components/layout/Footer';
 import DevelopersPage from './DevelopersPage';
 import DocumentationPage from './DocumentationPage';
+import AboutUsPage from './AboutUsPage';
+import StrategicFrameworkPage from './StrategicFrameworkPage';
+import FoundersPage from './FoundersPage';
+import MediaPressPage from './MediaPressPage';
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -44,6 +48,22 @@ const Index = () => {
 
       {currentPage === 'documentations' && (
         <DocumentationPage setCurrentPage={setCurrentPage} />
+      )}
+
+      {currentPage === 'about-us' && (
+        <AboutUsPage setCurrentPage={setCurrentPage} />
+      )}
+
+      {currentPage === 'strategic-framework' && (
+        <StrategicFrameworkPage setCurrentPage={setCurrentPage} />
+      )}
+
+      {currentPage === 'founders' && (
+        <FoundersPage setCurrentPage={setCurrentPage} />
+      )}
+
+      {currentPage === 'media-press' && (
+        <MediaPressPage setCurrentPage={setCurrentPage} />
       )}
 
       <Footer />
