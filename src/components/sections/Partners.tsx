@@ -8,9 +8,7 @@ const PARTNER_LOGOS = [
   "https://res.cloudinary.com/dcjufshrh/image/upload/v1771501184/Visa-Logo-PNG-Pic_kzklmg.png",
   "https://res.cloudinary.com/dcjufshrh/image/upload/v1771501183/Banque_Misr.svg_shmwiy.png",
   "https://res.cloudinary.com/dcjufshrh/image/upload/v1771501183/QNB-Logo-1964_cgungh.png",
-  "https://res.cloudinary.com/dcjufshrh/image/upload/v1771501183/huawei-2_mbfytf.png",
-  "https://res.cloudinary.com/dcjufshrh/image/upload/v1771501183/EBRD-Logo-1991_bde8is.png",
-  "https://res.cloudinary.com/dcjufshrh/image/upload/v1771501182/horizontal_logo_apjnfs.png"
+  "https://res.cloudinary.com/dcjufshrh/image/upload/v1771501183/huawei-2_mbfytf.png"
 ];
 
 const Partners = () => (
@@ -29,8 +27,8 @@ const Partners = () => (
       <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
       <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
 
-      <div className="flex gap-16 whitespace-nowrap animate-marquee items-center">
-        {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((logo, index) => (
+      <div className="flex gap-16 whitespace-nowrap animate-partners-marquee items-center">
+        {[...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS].map((logo, index) => (
           <div 
             key={index} 
             className="w-48 h-24 flex items-center justify-center bg-white rounded-xl transition-all duration-300 hover:scale-110 cursor-pointer shrink-0 grayscale hover:grayscale-0 opacity-70 hover:opacity-100"
@@ -43,6 +41,17 @@ const Partners = () => (
           </div>
         ))}
       </div>
+
+      <style>{`
+        @keyframes partners-marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.33%); }
+        }
+        .animate-partners-marquee {
+          animation: partners-marquee 30s linear infinite;
+          width: max-content;
+        }
+      `}</style>
     </div>
   </section>
 );

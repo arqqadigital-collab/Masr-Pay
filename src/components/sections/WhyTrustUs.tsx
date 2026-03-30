@@ -10,7 +10,7 @@ interface FeatureGridItemProps {
 }
 
 const FeatureGridItem = ({ icon: Icon, title, desc }: FeatureGridItemProps) => (
-  <div className="bg-white p-6 rounded-3xl border border-gray-100 hover:shadow-lg hover:border-red-100 transition-all duration-300">
+  <div className="bg-white p-6 rounded-3xl border border-gray-100 hover:shadow-lg hover:border-red-100 transition-all duration-300 h-full">
     <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center text-[#D62828] mb-4">
       <Icon size={20} />
     </div>
@@ -29,15 +29,15 @@ const WhyTrustUs = () => (
         subtitle="Merchants first, but customers at the heart of every experience."
       />
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <FeatureGridItem icon={Lock} title="Secure Transaction" desc="SSL/TLS encryption and tokenization to protect sensitive data. PCI DSS compliant." />
-        <FeatureGridItem icon={CreditCard} title="Multiple Methods" desc="Accept credit cards, debit cards, and digital wallets offering flexibility." />
-        <FeatureGridItem icon={LayoutDashboard} title="Friendly Dashboard" desc="Comprehensive reporting, analytics, and role-based management system." />
-        <FeatureGridItem icon={Shield} title="Fraud Protection" desc="Real-time monitoring to prevent fraudulent activities on every transaction." />
-        <FeatureGridItem icon={Globe} title="Seamless Integration" desc="Easy integration with websites, mobile apps, and ecommerce platforms." />
-        <FeatureGridItem icon={Headphones} title="Instant Support" desc="24/7 responsive, bilingual support to ensure peace of mind." />
-        <FeatureGridItem icon={Smartphone} title="Mobile Optimization" desc="Responsive design providing a seamless user experience on all devices." />
-        <FeatureGridItem icon={Zap} title="Payment Links" desc="Create payment links to send across various channels quickly." />
+      <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto"><FeatureGridItem icon={Lock} title="Secure Transaction" desc="SSL/TLS encryption and tokenization to protect sensitive data. PCI DSS compliant." /></div>
+        <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto"><FeatureGridItem icon={CreditCard} title="Multiple Methods" desc="Accept credit cards, debit cards, and digital wallets offering flexibility." /></div>
+        <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto"><FeatureGridItem icon={LayoutDashboard} title="Friendly Dashboard" desc="Comprehensive reporting, analytics, and role-based management system." /></div>
+        <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto"><FeatureGridItem icon={Shield} title="Fraud Protection" desc="Real-time monitoring to prevent fraudulent activities on every transaction." /></div>
+        <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto"><FeatureGridItem icon={Globe} title="Seamless Integration" desc="Easy integration with websites, mobile apps, and ecommerce platforms." /></div>
+        <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto"><FeatureGridItem icon={Headphones} title="Instant Support" desc="24/7 responsive, bilingual support to ensure peace of mind." /></div>
+        <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto"><FeatureGridItem icon={Smartphone} title="Mobile Optimization" desc="Responsive design providing a seamless user experience on all devices." /></div>
+        <div className="snap-start shrink-0 w-[85vw] sm:w-[320px] md:w-auto"><FeatureGridItem icon={Zap} title="Payment Links" desc="Create payment links to send across various channels quickly." /></div>
       </div>
     </div>
   </section>

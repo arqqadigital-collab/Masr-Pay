@@ -69,7 +69,7 @@ const PromiseSection = () => {
   };
 
   return (
-    <section className="relative w-full min-h-screen flex items-center bg-gray-900 overflow-hidden py-16 lg:py-20" id="about-us">
+    <section className="relative w-full bg-gray-900 overflow-hidden py-16 md:py-24" id="about-us">
       {/* Background Videos Crossfade */}
       {promises.map((promise, idx) => (
         <div 
@@ -88,24 +88,24 @@ const PromiseSection = () => {
         </div>
       ))}
 
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10 flex flex-col justify-center gap-8 lg:gap-12 h-full">
+      <div className="max-w-7xl mx-auto px-6 w-full relative z-10 flex flex-col gap-8 lg:gap-10">
         
-        {/* Top Section */}
+        {/* Top Section - Headers */}
         <div className="max-w-2xl">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight">Our Promise</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-3 tracking-tight">Our Promise</h2>
           <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light">
             MasrPay is not promising in words,<br />
             but with actions that drive growth and build trust...
           </p>
         </div>
 
-        {/* Middle Section */}
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full">
+        {/* Middle Section - Content */}
+        <div className="flex flex-col lg:flex-row items-center gap-8 w-full">
           
           {/* Active Promise Text & Navigation */}
           <div className="w-full lg:w-[40%] flex flex-col justify-center shrink-0">
             
-            <div className="relative min-h-[180px] md:min-h-[220px] w-full">
+            <div className="relative min-h-[220px] sm:min-h-[180px] md:min-h-[160px] w-full">
               {promises.map((promise, idx) => (
                 <div 
                   key={idx}
@@ -115,8 +115,8 @@ const PromiseSection = () => {
                       : 'opacity-0 translate-y-8 pointer-events-none'
                   }`}
                 >
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">{promise.title}</h3>
-                  <p className="text-white/80 text-lg md:text-xl leading-relaxed font-light max-w-lg">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">{promise.title}</h3>
+                  <p className="text-white/80 text-base md:text-lg leading-relaxed font-light max-w-lg">
                     {promise.description}
                   </p>
                 </div>
@@ -124,22 +124,22 @@ const PromiseSection = () => {
             </div>
 
             {/* Navigation Controls */}
-            <div className="flex items-center gap-6 w-full mt-6 lg:mt-4">
+            <div className="flex items-center gap-4 w-full mt-4">
               <button 
                 onClick={handlePrev}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95 shrink-0"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95 shrink-0"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={20} />
               </button>
               <button 
                 onClick={handleNext}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95 shrink-0"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95 shrink-0"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={20} />
               </button>
               
               {/* Progress Line */}
-              <div className="flex-1 h-[2px] bg-white/20 relative ml-4 rounded-full overflow-hidden">
+              <div className="flex-1 h-[2px] bg-white/20 relative ml-4 rounded-full overflow-hidden max-w-[150px]">
                 <div 
                   className="absolute top-0 left-0 h-full bg-white transition-all duration-500 ease-out rounded-full"
                   style={{ width: `${((activeIndex + 1) / promises.length) * 100}%` }}
@@ -152,17 +152,17 @@ const PromiseSection = () => {
           <div className="w-full lg:w-[60vw] relative shrink-0">
             <div 
               ref={carouselRef}
-              className="flex gap-4 md:gap-8 overflow-x-auto py-10 px-4 -ml-4 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pr-[15vw]"
+              className="flex gap-4 md:gap-6 overflow-x-auto py-6 px-2 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pr-[20vw]"
             >
               {promises.map((promise, idx) => (
                 <div 
                   key={idx}
                   onClick={() => handleCardClick(idx)}
                   className={`
-                    relative flex-shrink-0 w-60 md:w-72 lg:w-[320px] h-[320px] md:h-[400px] lg:h-[440px] rounded-3xl overflow-hidden cursor-pointer snap-start transition-all duration-500 transform border border-white/10
+                    relative flex-shrink-0 w-60 md:w-72 lg:w-[280px] h-[280px] md:h-[340px] rounded-3xl overflow-hidden cursor-pointer snap-start transition-all duration-500 transform border border-white/10
                     ${activeIndex === idx 
-                      ? 'ring-2 ring-white scale-95 opacity-50'
-                      : 'hover:-translate-y-3 hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.8)] opacity-100 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)]'
+                      ? 'ring-2 ring-white scale-95 opacity-50 shadow-inner' 
+                      : 'hover:-translate-y-2 hover:shadow-2xl opacity-100'
                     }
                   `}
                 >
@@ -173,9 +173,9 @@ const PromiseSection = () => {
                     playsInline
                     className="w-full h-full object-cover" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <span className="text-white font-bold text-lg md:text-xl leading-tight block drop-shadow-md">{promise.title}</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <span className="text-white font-bold text-base md:text-lg leading-tight block">{promise.title}</span>
                   </div>
                 </div>
               ))}
