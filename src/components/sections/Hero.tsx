@@ -22,7 +22,7 @@ const Hero = () => {
   };
 
   return (
-    <header className="relative h-screen w-full overflow-hidden bg-gray-900">
+    <header className="relative h-screen w-full overflow-hidden bg-gray-900" id="home">
       <video 
         ref={videoRef}
         className="absolute top-0 left-0 w-full h-full object-cover"

@@ -142,8 +142,8 @@ const DocumentationPage = ({ setCurrentPage }: DocumentationPageProps) => {
               </div>
               <pre className="text-green-400 font-mono text-sm">
                 <code>
-{`Authorization: Bearer sk_test_51Nx...
-Content-Type: application/json`}
+<span className="text-pink-500">Authorization:</span> Bearer sk_test_51Nx...<br/>
+<span className="text-pink-500">Content-Type:</span> application/json
                 </code>
               </pre>
             </div>
