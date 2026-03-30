@@ -69,7 +69,7 @@ const PromiseSection = () => {
   };
 
   return (
-    <section className="relative w-full min-h-screen flex items-center bg-gray-900 overflow-hidden py-16 lg:py-20">
+    <section className="relative w-full min-h-screen flex items-center bg-gray-900 overflow-hidden py-16 lg:py-20" id="about-us">
       {/* Background Videos Crossfade */}
       {promises.map((promise, idx) => (
         <div 

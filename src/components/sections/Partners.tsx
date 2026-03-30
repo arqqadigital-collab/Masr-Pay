@@ -14,7 +14,7 @@ const PARTNER_LOGOS = [
 ];
 
 const Partners = () => (
-  <section className="py-24 bg-white border-t border-gray-100 overflow-hidden relative">
+  <section className="py-24 bg-white border-t border-gray-100 overflow-hidden relative" id="partners">
     <DecorativePattern className="top-1/2 right-0 w-[40rem] md:w-[50rem] translate-x-1/3 -translate-y-1/2" />
     
     <div className="max-w-7xl mx-auto px-6 mb-16 relative z-10">

@@ -1,7 +1,7 @@
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 const Footer = () => (
-  <footer className="bg-[#1a1a1a] text-white py-16 rounded-t-[40px] mt-12">
+  <footer className="bg-[#1a1a1a] text-white py-16 rounded-t-[40px] mt-12 relative z-10">
     <div className="max-w-7xl mx-auto px-6">
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16 items-start">
@@ -20,7 +20,7 @@ const Footer = () => (
         </div>
         
         {/* Column 2: Company Links */}
-        <div>
+         <div className="lg:justify-self-center">
           <h4 className="font-bold text-lg mb-6 text-white">Company</h4>
           <ul className="space-y-4 text-gray-400">
             <li><a href="#" className="hover:text-white transition">About Us</a></li>
@@ -30,7 +30,7 @@ const Footer = () => (
         </div>
         
         {/* Column 3: Support Links */}
-        <div>
+        <div className="lg:justify-self-center">
           <h4 className="font-bold text-lg mb-6 text-white">Support</h4>
           <ul className="space-y-4 text-gray-400">
             <li><a href="#" className="hover:text-white transition">Help Center</a></li>
@@ -40,7 +40,7 @@ const Footer = () => (
         </div>
 
         {/* Column 4: PCI Certified */}
-        <div className="flex flex-col items-start lg:items-end">
+        <div className="flex flex-col items-start lg:items-end lg:justify-self-end">
            <div className="flex flex-col items-center">
              <span className="text-gray-300 font-semibold tracking-wider uppercase text-sm mb-4">
                PCI Certified
