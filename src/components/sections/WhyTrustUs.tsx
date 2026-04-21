@@ -21,7 +21,7 @@ const FeatureGridItem = ({ icon: Icon, title, desc }: FeatureGridItemProps) => (
 
 const WhyTrustUs = () => (
   <section className="py-24 bg-white relative overflow-hidden">
-    <DecorativePattern className="top-0 right-0 w-[40rem] md:w-[50rem] translate-x-1/4 -translate-y-1/4" />
+    <DecorativePattern className="bottom-0 left-0 w-[40rem] md:w-[50rem] -translate-x-1/4 translate-y-1/4" />
 
     <div className="max-w-7xl mx-auto px-6 relative z-10">
       <SectionHeading
